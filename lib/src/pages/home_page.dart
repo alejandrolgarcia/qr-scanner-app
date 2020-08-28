@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:qrscanner/src/models/scan_model.dart';
 
 // import 'package:barcode_scan/barcode_scan.dart';
 
 import 'package:qrscanner/src/pages/direcciones_page.dart';
 import 'package:qrscanner/src/pages/mapas_page.dart';
+import 'package:qrscanner/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     // https://github.com/alejandrolgarcia
     // geo:40.64717223609039,-73.8013209386719
     
-    // String futureString = '';
+    String futureString = 'https://github.com/alejandrolgarcia';
 
     // try {
     //   futureString = await BarcodeScanner.scan();
@@ -53,11 +55,13 @@ class _HomePageState extends State<HomePage> {
     //   futureString = e.toString();
     // }
 
-    // print('Future String: $futureString ' );
+    // Grabar en SQLite
+    if( futureString != null ) {
+      
+      final scan = ScanModel( valor: futureString );
+      DBProvider.db.nuevoScan( scan );
 
-    // if( futureString != null ) {
-    //   print('Tenemos informacion');
-    // }
+    }
     
   }
 
