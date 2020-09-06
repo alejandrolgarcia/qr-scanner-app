@@ -128,7 +128,7 @@ class DBProvider {
 
   }
 
-    Future<int> deleteAllScan( int id ) async {
+    Future<int> deleteAllScan() async {
 
     final db = await database;
     final res = await db.rawDelete('DELETE FROM Scans');
